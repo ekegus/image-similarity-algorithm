@@ -33,9 +33,7 @@ According to Google, there are two different approaches to classifying images:
 1. Fixed label to category mapping
 2. Word vector mapping
 
-#### 1.2.1 Fixed label to category mapping
-
-#### 1.2.2 Word vector mapping
+Ideally, one would use word vector mapping, however, I opt for fixed label to category mapping as it is the most simple solution. Down the line, one could refactor to the word vector approach.
 
 ### 1.3 What are the inputs that go into the problem?
 
@@ -77,7 +75,7 @@ To conceptually come up with a sensible solution it might make sense to come up 
 
 Example:
 
-1. If I were to select the tomato plant (5.jpg), I would probably want to see other edibles as "related images", i.e. the banana plant (4.jpg) and the eggplant (10.jpg) or the gem squash (.jpg).
+1. If I were to select the tomato plant (5.jpg), I would probably want to see other edibles as "related images", i.e. the banana plant (4.jpg) and the eggplant (10.jpg) or the gem squash (6.jpg).
 2. If I were to select the China rose (17.jpg), I would possibly want to see the rose decoration (19.jpg) or the primrose (2.jpg).
 3. If I were to select the Begonia (perennial flower) (15.jpg), I would want to see another perennial plant flower (1.jpg, 2.jpg, 14.jpg, 15.jpg, 16.jpg 18.jpg). Too many possibilities? Need for further criterias?
 4. If I were to select a shrubby plant (e.g. 20.jpg), I would want to see another shrub, e.g. (7.jpg, 9.jpg)
@@ -90,9 +88,11 @@ The steps I need to take written in pseudocode.
 
 1. Create predefined categories
 2. Associate labels with the categories
-3. Loop through the images
-4. Calculate categoryscore for each category.
-5. Add images to the categories
+3. Calculate categoryscore for each category of an individual image.
+4. Determine category for an individual image
+5. Add image to given category
+6. Repeat this for all twenty images
+7. Create a function which looks up the category of an image and returns all similar images or an error message if there are no similar images (This error message would be handled differently down the road)
 
 ## 4. Solve the Problem
 
