@@ -2,6 +2,10 @@
 
 ## About
 
+Thank you for letting me take my time with completing this tech challenge. It was very important to me that I could finish the course without any distractions to maximise my learning.
+
+Also an apologise for a further delay because the tech test got lost as Nology shut down my work email on which I had stored the test.
+
 This md-file serves as a sort of log as I work through the algorithm problem.
 
 ## 1. Understand the problem
@@ -78,10 +82,17 @@ Example:
 3. If I were to select the Begonia (perennial flower) (15.jpg), I would want to see another perennial plant flower (1.jpg, 2.jpg, 14.jpg, 15.jpg, 16.jpg 18.jpg). Too many possibilities? Need for further criterias?
 4. If I were to select a shrubby plant (e.g. 20.jpg), I would want to see another shrub, e.g. (7.jpg, 9.jpg)
 5. What if we don't have any related plants? We don't show anything? E.g. the algae (3.jpg) does not seem related to anything else (albeit my knowledge of plants is very limited).
+6. What if the plant label does not exist in any category?
 
 ## 3. Break It Down
 
 The steps I need to take written in pseudocode.
+
+1. Create predefined categories
+2. Associate labels with the categories
+3. Loop through the images
+4. Calculate categoryscore for each category.
+5. Add images to the categories
 
 ## 4. Solve the Problem
 
