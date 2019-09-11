@@ -1,0 +1,17 @@
+{
+  "name": "image-similarity-algorithm",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ekegus/image-similarity-algorithm.git",
+  "author": "ekegus <benjamin.ekeloef@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0"
+  }
+}
