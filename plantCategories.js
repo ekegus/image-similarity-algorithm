@@ -1,5 +1,5 @@
 const plantCategories = {
-  edible: [
+  edibles: [
     "Natural foods",
     "Local food",
     "Bush tomato",
