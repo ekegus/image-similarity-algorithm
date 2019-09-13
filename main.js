@@ -1,7 +1,8 @@
 const plantCategories = require("./plantCategories");
 const plantData = require("./data.json");
 
-const calcSumOfCategoryLabels = (imageString, plantCategories) => {
+placePlantInDatabase = (imageString, plantCategories) => {
+  const image = imageString;
   const plant = plantData[imageString];
   let categoryScores = new Object();
   for (let [plantCategory, categoryLabel] of Object.entries(plantCategories)) {
@@ -13,18 +14,13 @@ const calcSumOfCategoryLabels = (imageString, plantCategories) => {
       }
     });
   }
-  console.log(categoryScores);
-
   let highestCategory = getCategoryWithHighestScore(categoryScores);
   console.log(highestCategory);
-  console.log(categoryScores[highestCategory]);
-  console.log(
-    `Your plant image belongs to the ${highestCategory} with a score of ${categoryScores[highestCategory]}`
-  );
-  // categoryScores[highestCategory]
+
+  return (plantDatabase[highestCategory] = image);
 };
 
-const getCategoryWithHighestScore = objectOfCategoryScores => {
+getCategoryWithHighestScore = objectOfCategoryScores => {
   let category = Object.keys(objectOfCategoryScores).filter(category => {
     return (
       objectOfCategoryScores[category] ===
@@ -34,4 +30,13 @@ const getCategoryWithHighestScore = objectOfCategoryScores => {
   return category[0];
 };
 
-calcSumOfCategoryLabels("5.jpg", plantCategories);
+fillDatabase = () => {};
+
+// getSimilarPlantImages = imageString => {
+//   let plantDatabase = {};
+// call function to fill database with 25 images
+// output string with suggestion to other plants in a given category
+// };
+
+placePlantInDatabase("3.jpg", plantCategories);
+console.log(plantDatabase);
