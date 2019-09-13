@@ -50,7 +50,3 @@ describe("check for similar plants", () => {
     ]);
   });
 });
-
-// Focus on unhappy path
-// 1. What if no label — don't take label into account?
-// 2. What if plant doesn't belong to category?
