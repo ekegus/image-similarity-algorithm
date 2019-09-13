@@ -1,41 +1,20 @@
+const plantCategories = require("./plantCategories");
 const plantData = require("./data.json");
 
-// create predefined categories with labels
-// each category is associated with one or more labels
-//
-// ignore score for now --> 1. easier / 2. some of the more important labels has a lower score
-
-// create each category with a limited amount of labels
-
-export let categories = {
-  edible: [
-    "Natural foods",
-    "Local food",
-    "Bush tomato",
-    "Tomato",
-    "Fruit",
-    "Vegetable",
-    "Food",
-    "Plum tomato",
-    "Vegan nutrition",
-    "Vegetarian food"
-  ]
-};
-
-export const calcSumOfCategoryLabels = imageString => {
+const calcSumOfCategoryLabels = (imageString, plantCategories) => {
   const plant = plantData[imageString];
-  plant.forEach(dataLabel => {
-    console.log(`${dataLabel.description} : ${dataLabel.score}`);
-    console.log(dataLabel.description);
-
-    console.log(categories.edible.indexOf(dataLabel.description));
-  });
-
-  //check if label exists --> If it does, i.e. if it is not -1 add score to the category.
-  // console.log(categories.edible.indexOf("Local m"));
-
-  // console.log(plantData[imageString].score);
-  // console.log(plantData[imageString].score);
+  let categoryScores = new Object();
+  for (let [plantCategory, plantLabel] of Object.entries(plantCategories)) {
+    plant.forEach(dataLabel => {
+      if (plantLabel.indexOf(dataLabel.description) !== -1) {
+        categoryScores[plantCategory] = dataLabel.score;
+        // categoryScores.push(dataLabel.description);
+        console.log(plantCategory);
+        console.log(`Your image belongs in the ${plantCategory} category.`);
+      }
+    });
+  }
+  console.log(categoryScores);
 };
 
-calcSumOfCategoryLabels("5.jpg");
+calcSumOfCategoryLabels("19.jpg", plantCategories);
