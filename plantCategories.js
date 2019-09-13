@@ -39,7 +39,7 @@ const plantCategories = {
   algaes: ["Green algae", "Algae", "Chlorophyta", "Sea lettuce"],
   shrubs: ["Subshrub", "Shrub"],
   houseplants: ["Flowerpot", "Cut flowers"],
-  decorations: [
+  decorative: [
     "Floral design",
     "Floristry",
     "Flower Arranging",
