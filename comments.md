@@ -1,4 +1,12 @@
-# image-similarity-algorithm
+# Image Similarity Algorithm
+
+Still to do:
+
+1. Picture 12 is undefined category.
+2. What if there are no other images in the category? Write if statement for this.
+3. Write tests.
+4. Refactor.
+5. Write readme to explain approach.
 
 ## About
 
