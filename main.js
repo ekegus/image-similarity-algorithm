@@ -3,7 +3,7 @@ const plantData = require("./data.json");
 
 let plantDatabase = {};
 
-determineCategory = (imageString, plantCategories) => {
+determinePlantCategory = (imageString, plantCategories) => {
   const plant = plantData[imageString];
   let categoryScores = new Object();
   for (let [plantCategory, categoryLabel] of Object.entries(plantCategories)) {
@@ -29,7 +29,7 @@ getCategoryWithHighestScore = objectOfCategoryScores => {
 };
 
 placeOnePlantInDatabase = (imageString, plantCategories) => {
-  const highestCategory = determineCategory(imageString, plantCategories);
+  const highestCategory = determinePlantCategory(imageString, plantCategories);
   return plantDatabase.hasOwnProperty(highestCategory)
     ? plantDatabase[highestCategory].push(imageString)
     : (plantDatabase[highestCategory] = new Array(imageString));
@@ -44,21 +44,29 @@ placeAllPlantsInDatabase = plantData => {
 
 findSimilarPlantImages = imageString => {
   placeAllPlantsInDatabase(plantData);
-  let categoryOfInputPlant = determineCategory(imageString, plantCategories);
+  let categoryOfInputPlant = determinePlantCategory(
+    imageString,
+    plantCategories
+  );
   for (let [key, value] of Object.entries(plantDatabase)) {
     if (categoryOfInputPlant === key) {
-      let filteredImages = value.filter(element => {
+      let plantsInCategory = value.filter(element => {
         return element !== imageString;
       });
-      let otherPlantsInSameCategory = filteredImages.join(", ");
-      return otherPlantsInSameCategory;
+      return plantsInCategory;
     }
   }
 };
 
 generateUserMessage = imageString => {
-  let similarPlantImages = findSimilarPlantImages(imageString);
-  return `Thank you for your interest in ${imageString}, why don't you also check out image: ${similarPlantImages}?`;
+  const similarPlantImages = findSimilarPlantImages(imageString);
+  const plantCategory = determinePlantCategory(imageString, plantCategories);
+  const noOtherPlantsMessage = `Thank you for your interest in ${imageString}. Unfortunately, we don't have other images in the plant category ${plantCategory}.`;
+  const seeOtherPlantsMessage = `Thank you for your interest in ${imageString}. Why don't you also check out other images in the plant category ${plantCategory}: ${similarPlantImages.join(
+    ", "
+  )}?`;
+  return similarPlantImages.length < 1
+    ? noOtherPlantsMessage
+    : seeOtherPlantsMessage;
 };
-
-console.log(generateUserMessage("5.jpg"));
+console.log(generateUserMessage("4.jpg"));
