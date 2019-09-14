@@ -1,7 +1,9 @@
 import {
   determineCategoryForPlant,
   calculateCategoryScore,
-  getCategoryWithHighestScore
+  getCategoryWithHighestScore,
+  placeOnePlantInDatabase,
+  placeAllPlantsInDatabase
 } from "./main";
 
 describe("determineCategoryForPlant function", () => {
@@ -29,7 +31,7 @@ describe("calculateCategoryScore function", () => {
 });
 
 describe("getCategoryWithHighestScore function", () => {
-  let categoryScoresForDecoration = {
+  const categoryScoresForDecoration = {
     roses: 1.6998191475868225,
     houseplants: 0.9525524377822876,
     decorative: 6.315008461475372
@@ -44,6 +46,14 @@ describe("getCategoryWithHighestScore function", () => {
       getCategoryWithHighestScore(categoryScoresForDecoration)
     ).not.toEqual("houseplants");
   });
+
+  // describe("placeOnePlantInDatabase function", () => {
+  //   test("placing the tomato plant (5.jpg) in the database should return an object ", () => {
+  //     expect(placeOnePlantInDatabase("5.jpg")).toEqual({
+  //       edibles: ["5.jpg"]
+  //     });
+  // });
+  // });
 });
 
 // describe("similar plants message", () => {

@@ -72,5 +72,6 @@ export const tellUserAboutSimilarPlants = imageString => {
     : seeOtherPlantsMessage;
 };
 
-console.log(tellUserAboutSimilarPlants("16.jpg"));
+console.log(tellUserAboutSimilarPlants("5.jpg"));
 // console.log(calculateCategoryScore("5.jpg"));
+// console.log(placeOnePlantInDatabase("1.jpg"));

@@ -3,10 +3,9 @@
 Still to do:
 
 1. Picture 12 is undefined category --> Write about GloVe
-2. What if there are no other images in the category? Write if statement for this.
-3. Write tests.
-4. Refactor.
-5. Write readme to explain approach.
+2. Write tests. --> Refactor database 1 and more plants so they are clean --> so I can write tests for them --> Try and write a test for every function
+3. Refactor.
+4. Write readme to explain approach.
 
 ## About
 
