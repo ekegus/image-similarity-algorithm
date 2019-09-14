@@ -1,10 +1,12 @@
 import {
-  determineCategoryForPlant,
+  categorisePlants,
   calculateCategoryScore,
+  determineCategoryForPlant,
   getCategoryWithHighestScore,
-  placeOnePlantInDatabase,
-  placeAllPlantsInDatabase
+  findSimilarPlantImages,
+  renderMessage
 } from "./main";
+const plantData = require("./data.json");
 
 describe("determineCategoryForPlant function", () => {
   test("the tomato plant should belong to the edibles category", () => {
@@ -46,20 +48,46 @@ describe("getCategoryWithHighestScore function", () => {
       getCategoryWithHighestScore(categoryScoresForDecoration)
     ).not.toEqual("houseplants");
   });
-
-  // describe("placeOnePlantInDatabase function", () => {
-  //   test("placing the tomato plant (5.jpg) in the database should return an object ", () => {
-  //     expect(placeOnePlantInDatabase("5.jpg")).toEqual({
-  //       edibles: ["5.jpg"]
-  //     });
-  // });
-  // });
 });
 
-// describe("similar plants message", () => {
-//   test("the tomato images (5.jpg) should tell the user about the banana plant (4.jpg) and the eggplant (10.jpg) and the gem squash (6.jpg)", () => {
-//     expect(tellUserAboutSimilarPlants("5.jpg")).toEqual(
-//       "Thank you for your interest in 5.jpg. Why don't you also check out other images in the plant category edibles: 4.jpg, 6.jpg, 10.jpg?"
-//     );
-//   });
-// });
+describe("categorisePlants function", () => {
+  test("categorisePlants should categorise twenty plants", () => {
+    expect(categorisePlants(plantData)).toEqual({
+      algaes: ["3.jpg"],
+      decorative: ["13.jpg", "18.jpg", "19.jpg"],
+      edibles: ["4.jpg", "5.jpg", "6.jpg", "10.jpg"],
+      houseplants: ["8.jpg"],
+      perennials: ["2.jpg", "14.jpg"],
+      roses: ["17.jpg"],
+      shrubs: ["7.jpg", "9.jpg", "20.jpg"],
+      undefined: ["12.jpg"],
+      wildflowers: ["1.jpg", "11.jpg", "15.jpg", "16.jpg"]
+    });
+  });
+});
+
+describe("findSimilarPlantImages should return the array of images for a given category", () => {
+  test("the algae image should return no similar images", () => {
+    expect(findSimilarPlantImages("3.jpg")).toEqual([]);
+  });
+  test("the tomato image should return three similar images (4.jpg, 6.jpg, 10.jpg)", () => {
+    expect(findSimilarPlantImages("5.jpg")).toEqual([
+      "4.jpg",
+      "6.jpg",
+      "10.jpg"
+    ]);
+  });
+});
+
+describe("renderMessage function", () => {
+  test("the tomato images (5.jpg) should tell the user about image 4.jpg, 6.jpg and 10.jpg", () => {
+    expect(renderMessage("5.jpg")).toEqual(
+      "Thank you for your interest in 5.jpg. Why don't you also check out other images in the plant category edibles: 4.jpg, 6.jpg, 10.jpg?"
+    );
+  });
+  test("the algae image (3.jpg) should tell the user that there are no similar images", () => {
+    expect(renderMessage("3.jpg")).toEqual(
+      "Thank you for your interest in 3.jpg. Unfortunately, we don't have other images in the plant category algaes."
+    );
+  });
+});

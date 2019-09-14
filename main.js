@@ -1,20 +1,25 @@
 const plantData = require("./data.json");
 const plantCategories = require("./plantCategories");
 
-export let plantDatabase = {};
-
-export const placeOnePlantInDatabase = imageString => {
-  const highestScoringCategory = determineCategoryForPlant(imageString);
-  return plantDatabase.hasOwnProperty(highestScoringCategory)
-    ? plantDatabase[highestScoringCategory].push(imageString)
-    : (plantDatabase[highestScoringCategory] = new Array(imageString));
+export const categorisePlants = () => {
+  let categorisedPlants = {};
+  let plantsToPlace = Object.keys(plantData);
+  for (let index = 0; index < plantsToPlace.length; index++) {
+    let highestScoringCategory = determineCategoryForPlant(
+      plantsToPlace[index]
+    );
+    categorisedPlants.hasOwnProperty(highestScoringCategory)
+      ? categorisedPlants[highestScoringCategory].push(plantsToPlace[index])
+      : (categorisedPlants[highestScoringCategory] = new Array(
+          plantsToPlace[index]
+        ));
+  }
+  return categorisedPlants;
 };
 
-export const placeAllPlantsInDatabase = plantData => {
-  let plantsToPlace = Object.keys(plantData);
-  return plantsToPlace.map(imageString => {
-    return placeOnePlantInDatabase(imageString);
-  });
+export const determineCategoryForPlant = imageString => {
+  const categoryScores = calculateCategoryScore(imageString);
+  return getCategoryWithHighestScore(categoryScores);
 };
 
 export const calculateCategoryScore = imageString => {
@@ -32,11 +37,6 @@ export const calculateCategoryScore = imageString => {
   return categoryScores;
 };
 
-export const determineCategoryForPlant = imageString => {
-  const categoryScores = calculateCategoryScore(imageString);
-  return getCategoryWithHighestScore(categoryScores);
-};
-
 export const getCategoryWithHighestScore = categoryScores => {
   let categories = Object.keys(categoryScores).filter(category => {
     return (
@@ -48,9 +48,9 @@ export const getCategoryWithHighestScore = categoryScores => {
 };
 
 export const findSimilarPlantImages = imageString => {
-  placeAllPlantsInDatabase(plantData);
+  const categorisedPlants = categorisePlants(plantData);
   let categoryOfInputPlant = determineCategoryForPlant(imageString);
-  for (let [key, value] of Object.entries(plantDatabase)) {
+  for (let [key, value] of Object.entries(categorisedPlants)) {
     if (categoryOfInputPlant === key) {
       let plantsInCategory = value.filter(element => {
         return element !== imageString;
@@ -60,7 +60,7 @@ export const findSimilarPlantImages = imageString => {
   }
 };
 
-export const tellUserAboutSimilarPlants = imageString => {
+export const renderMessage = imageString => {
   const similarPlantImages = findSimilarPlantImages(imageString);
   const plantCategory = determineCategoryForPlant(imageString);
   const noOtherPlantsMessage = `Thank you for your interest in ${imageString}. Unfortunately, we don't have other images in the plant category ${plantCategory}.`;
@@ -72,6 +72,4 @@ export const tellUserAboutSimilarPlants = imageString => {
     : seeOtherPlantsMessage;
 };
 
-console.log(tellUserAboutSimilarPlants("5.jpg"));
-// console.log(calculateCategoryScore("5.jpg"));
-// console.log(placeOnePlantInDatabase("1.jpg"));
+console.log(renderMessage("5.jpg"));
