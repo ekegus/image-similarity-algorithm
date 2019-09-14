@@ -1,52 +1,55 @@
 import {
-  categories,
-  calcCategoryScore,
-  determineCategory,
-  checkForSimilarPlants
+  determineCategoryForPlant,
+  calculateCategoryScore,
+  getCategoryWithHighestScore
 } from "./main";
-const plantData = require("./data.json");
 
-describe("plant categories", () => {
-  test("categories should have a category called 'edible'", () => {
-    expect(categories.edible).toBeDefined();
+describe("determineCategoryForPlant function", () => {
+  test("the tomato plant should belong to the edibles category", () => {
+    expect(determineCategoryForPlant("5.jpg")).toEqual("edibles");
   });
-  test("categories should have a category called 'shrub'", () => {
-    expect(categories.shrub).toBeDefined();
-  });
-  test("categories should have a category called 'rose'", () => {
-    expect(categories.wildflower).toBeDefined();
+  test("the tomato plant should NOT belong to the wildflower category", () => {
+    expect(determineCategoryForPlant("5.jpg")).not.toEqual("wildflower");
   });
 });
 
-describe("place image in category", () => {
-  test("the tomato image should belong to the category 'edible'", () => {
-    expect(determineCategory(plantData["5.jpg"])).toEqual("edible");
+describe("calculateCategoryScore function", () => {
+  test("the tomato plant should have a category score of 9.24598115682602", () => {
+    expect(calculateCategoryScore("5.jpg")).toEqual({
+      edibles: 9.24598115682602
+    });
   });
-  test("the algae image should belong to the category algae", () => {
-    expect(determineCategory(plantData["3.jpg"])).toEqual("algae");
-  });
-  test("the algae image should NOT belong to the category edible", () => {
-    expect(determineCategory(plantData["3.jpg"])).not.toEqual("edible");
-  });
-});
-
-describe("category score // calc sum of labels", () => {
-  test("the tomato image should have a category score ƒor edible of 9.24598115682602", () => {
-    expect(calcCategoryScore(plantData["5.jpg"])).toEqual(9.24598115682602);
+  test("the plant decoration should have scores in different categories", () => {
+    expect(calculateCategoryScore("19.jpg")).toEqual({
+      roses: 1.6998191475868225,
+      houseplants: 0.9525524377822876,
+      decorative: 6.315008461475372
+    });
   });
 });
 
-describe("check for similar plants", () => {
-  test("the algae should not have any similar plants", () => {
-    expect(checkForSimilarPlants("3.jpg")).toEqual(
-      "Sorry, we don't have any similar plants to the algae"
+describe("getCategoryWithHighestScore function", () => {
+  let categoryScoresForDecoration = {
+    roses: 1.6998191475868225,
+    houseplants: 0.9525524377822876,
+    decorative: 6.315008461475372
+  };
+  test("highest score of the plant decoration should be 'decorative'", () => {
+    expect(getCategoryWithHighestScore(categoryScoresForDecoration)).toEqual(
+      "decorative"
     );
   });
-  test("the tomato plant should have three similar plants, i.e. 4.img, 6.img, 10.img", () => {
-    expect(checkForSimilarPlants("5.jpg")).toEqual([
-      "4.img",
-      "6.img",
-      "10.img"
-    ]);
+  test("highest score of plant decoration should NOT be houseplants", () => {
+    expect(
+      getCategoryWithHighestScore(categoryScoresForDecoration)
+    ).not.toEqual("houseplants");
   });
 });
+
+// describe("similar plants message", () => {
+//   test("the tomato images (5.jpg) should tell the user about the banana plant (4.jpg) and the eggplant (10.jpg) and the gem squash (6.jpg)", () => {
+//     expect(tellUserAboutSimilarPlants("5.jpg")).toEqual(
+//       "Thank you for your interest in 5.jpg. Why don't you also check out other images in the plant category edibles: 4.jpg, 6.jpg, 10.jpg?"
+//     );
+//   });
+// });
