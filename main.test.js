@@ -1,19 +1,19 @@
 import {
   categorisePlants,
   calculateCategoryScore,
-  determineCategoryForPlant,
+  determinePlantCategory,
   getCategoryWithHighestScore,
   findSimilarPlantImages,
   renderMessage
 } from "./main";
 const plantData = require("./data.json");
 
-describe("determineCategoryForPlant function", () => {
+describe("determinePlantCategory function", () => {
   test("the tomato plant should belong to the edibles category", () => {
-    expect(determineCategoryForPlant("5.jpg")).toEqual("edibles");
+    expect(determinePlantCategory("5.jpg")).toEqual("edibles");
   });
   test("the tomato plant should NOT belong to the wildflower category", () => {
-    expect(determineCategoryForPlant("5.jpg")).not.toEqual("wildflower");
+    expect(determinePlantCategory("5.jpg")).not.toEqual("wildflower");
   });
 });
 
