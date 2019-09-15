@@ -6,7 +6,7 @@ The length of this readme is due to the open-ended nature of the challenge which
 
 ## 1. About The Task
 
-## 1.1 The Challenge To Solve
+### 1.1 The Challenge To Solve
 
 If I were to select any of the twenty plant images, the algorithm should output which other plant photos might be of interest.
 
