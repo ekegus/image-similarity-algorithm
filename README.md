@@ -4,9 +4,9 @@ Thank you for letting me take my time completing the algorithm. I appreciate you
 
 The length of this readme is due to the open-ended nature of the challenge which made me write quite extensively about what brought me to this specific solution. In case you want to skip straight to my code outline, this can be found under 3. The Code.
 
-## 1. About The Task
+## 1. About the Task
 
-### 1.1 The Challenge To Solve
+### 1.1 The Challenge to Solve
 
 If I were to select any of the twenty plant images, the algorithm should output which other plant photos might be of interest.
 
@@ -17,7 +17,7 @@ To see the result:
 3. See the console.log output from line 77 which currently checks for plants related to '5.jpg'.
 4. To see recommendations for other plants change line 77 to a plant of your choice, e.g. '1.jpg'.
 
-### 1.2 Understanding the data
+### 1.2 Understanding the Data
 
 I decided to use Google's Vision API and the image labels it returns. However, to incorporate the label data in a well-informed manner, I first had to understand the data provided from Google Cloud Vision [https://cloud.google.com/solutions/image-search-app-with-cloud-vision].
 As far as I understand, a user can upload an image and the Google API returns a number of labels for the given image. Each label has:
@@ -29,7 +29,7 @@ As far as I understand, a user can upload an image and the Google API returns a 
 
 These returned labels for each image can then be used to place images within categories based on similarity.
 
-### 1.3 Sorting in categories
+### 1.3 Sorting in Categories
 
 According to Google, there are two different approaches to classifying images:
 
@@ -40,7 +40,7 @@ Ideally, one would use word vector mapping, however, I decided to use the fixed 
 
 ## 2. My Approach
 
-### 2.1 Categorising plants after the fixed-label-to-category-mapping approach
+### 2.1 Categorising Plants After the Fixed-Label-to-Category-Mapping Approach
 
 Using fixed label to category mapping, I first created categories based on the labels the Google Vision API has returned. These can be found in the file called plantCategories.js.
 
