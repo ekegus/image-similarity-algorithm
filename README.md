@@ -90,7 +90,7 @@ And lastly the functions which returns the similar plants:
 
 ### 3.2 Testing
 
-I created a couple of unit tests for each function which helped me think about how to structure the code and which function/steps I would need to solve the task.
+I created a couple of unit tests for each function using Jest. This helped me think about how to structure the code and which steps I would need to take to solve the task.
 
 ### 3.3 Refactoring
 
