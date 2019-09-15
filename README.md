@@ -10,6 +10,13 @@ The length of this readme is due to the open-ended nature of the challenge which
 
 If I were to select any of the twenty plant images, the algorithm should output which other plant photos might be of interest.
 
+To see the result:
+
+1. Run `yarn install`.
+2. Run `yarn test`.
+3. See the console.log output from line 77 which currently checks for plants related to '5.jpg'.
+4. To see recommendations for other plants change line 77 to a plant of your choice, e.g. '1.jpg'.
+
 ### 1.2 Understanding the data
 
 I decided to use Google's Vision API and the image labels it returns. However, to incorporate the label data in a well-informed manner, I first had to understand the data provided from Google Cloud Vision [https://cloud.google.com/solutions/image-search-app-with-cloud-vision].
