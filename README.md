@@ -95,7 +95,7 @@ I created a couple of unit tests for each function using Jest. This helped me th
 ### 3.3 Refactoring
 
 1. 12.jpg (maple tree/leave) is not placed in a category and figures under 'undefined'. This is obviously not a viable solution. However, I decided to leave it as a) it isn't obvious to me which category would be most suitable for the maple tree; b) it examplifies (I think) how a GloVe approach could have solved this issue by using semantic vectors.
-2. The nsmr 'imageString' to refer to the images/file names, e.g. '1.jpg', could be more specific. Cannot come up with something better for now.
+2. The name 'imageString' used for refering to the images/file names, e.g. '1.jpg', could be more specific. Cannot come up with something better for now.
 3. The solution uses looping/iterating methods extensively, e.g. for-loops, filter, map, Object.keys/values/entries. Sometimes these are even nested, e.g. lines 55-57. Although my knowledge of performance is limited, I believe this would be problematic if I were to work with a dataset much bigger than 20 images. The many iterators also decreases the readability of the code. If I had more time, my next step would probably consists in trying to research performance and learn about how this could be improved.
 4. I would possibly refactor the categorisedPlants object into an array of objects instead of an object of objects as I think this might make the code more readable.
 5. Finally, I would try to implement global vectors using [https://nlp.stanford.edu/projects/glove/].
